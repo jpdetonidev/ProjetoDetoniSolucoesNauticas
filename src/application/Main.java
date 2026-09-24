@@ -88,8 +88,8 @@ public class Main {
         Peca pecaBaixa = estoque.get(numeroBaixa);
         System.out.print("Digite a quantidade para ser removida: ");
         int qtdRemovida = sc.nextInt();
-        boolean rresultado = pecaBaixa.darBaixa(qtdRemovida);
-        if(!rresultado){
+        boolean remResultado = pecaBaixa.darBaixa(qtdRemovida);
+        if(!remResultado){
             System.out.println("Estoque insuficiente. Disponível: " + pecaBaixa.getQuantidade());
         }else{
             System.out.println("Remoção realizada com sucesso.");
