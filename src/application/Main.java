@@ -18,6 +18,47 @@ public class Main {
         int qtdCadastros = sc.nextInt();
 
         //Fazer Cadastro
+        System.out.println();
+        cadastrarPeca(estoque, sc, qtdCadastros);
+
+        // Buscar Peça
+        buscarPeca(estoque, sc);
+
+        // Dar entrada na Peça
+        registrarEntrada(estoque, sc);
+
+        // Dar baixa na Peça
+        registrarBaixa(estoque,sc);
+
+        // Mostrar Estoque
+        System.out.println();
+        listarEstoque(estoque);
+        }
+
+    // Métodos
+    public static void listarEstoque(List<Peca> estoque){
+        System.out.println("Estoque: ");
+        for(int i = 0; i<estoque.size(); i++){
+            System.out.println(estoque.get(i));
+        }
+    }
+
+    public static void buscarPeca(List<Peca> estoque, Scanner sc){
+        System.out.print("\nBuscar peça: ");
+        sc.nextLine();
+        String nomeBusca = sc.nextLine();
+        boolean achouBusca = false;
+        for(int i = 0; i < estoque.size(); i++){
+            if(estoque.get(i).getNome().equals(nomeBusca)){
+                System.out.println("\n" + estoque.get(i));
+                achouBusca = true;
+            }
+        }
+        if(!achouBusca){
+            System.out.println("\nNada foi encontrado na busca por essa peça.");
+        }
+    }
+    public static void cadastrarPeca(List<Peca> estoque, Scanner sc, int qtdCadastros){
         for(int i = 0; i<qtdCadastros; i++){
             sc.nextLine();
             System.out.print("Nome: ");
@@ -42,22 +83,8 @@ public class Main {
 
             }
         }
-        // Buscar Peça
-        System.out.print("\nBuscar peça: ");
-        sc.nextLine();
-        String nomeBusca = sc.nextLine();
-        boolean achouBusca = false;
-        for(int i = 0; i < estoque.size(); i++){
-            if(estoque.get(i).getNome().equals(nomeBusca)){
-                System.out.println("\n" + estoque.get(i));
-                achouBusca = true;
-            }
-        }
-        if(!achouBusca){
-            System.out.println("\nNada foi encontrado na busca por essa peça.");
-        }
-
-        // Dar entrada na Peça
+    }
+    public static void registrarEntrada(List<Peca> estoque, Scanner sc){
         System.out.print("Digite o nome da peça que voce deseja adicionar: ");
         String addPecaNome = sc.nextLine();
         for(int i = 0; i < estoque.size(); i++){
@@ -72,9 +99,8 @@ public class Main {
         int qtdAdicionada = sc.nextInt();
         pecaEntrada.darEntrada(qtdAdicionada);
         System.out.println("Peça adicionada com sucesso ao estoque.");
-
-
-        // Dar baixa na Peça
+    }
+    public static void registrarBaixa(List<Peca> estoque, Scanner sc){
         System.out.print("\nDigite o nome da peça que você deseja remover: ");
         sc.nextLine();
         String remPecaNome = sc.nextLine();
@@ -88,18 +114,14 @@ public class Main {
         Peca pecaBaixa = estoque.get(numeroBaixa);
         System.out.print("Digite a quantidade para ser removida: ");
         int qtdRemovida = sc.nextInt();
-        boolean remResultado = pecaBaixa.darBaixa(qtdRemovida);
-        if(!remResultado){
+        boolean baixaResultado = pecaBaixa.darBaixa(qtdRemovida);
+        if(!baixaResultado){
             System.out.println("Estoque insuficiente. Disponível: " + pecaBaixa.getQuantidade());
         }else{
             System.out.println("Remoção realizada com sucesso.");
         }
-
-        // Mostrar Estoque
-        System.out.println("\n\nEstoque: ");
-        for(int i = 0; i<estoque.size(); i++){
-            System.out.println(estoque.get(i));
-        }
-
     }
+
 }
+
+
