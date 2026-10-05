@@ -12,28 +12,39 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         List<Peca> estoque = new ArrayList<>();
+        int opcao;
 
-        System.out.print("Escreva a quantidade de peças a serem inseridas no estoque: ");
-        int qtdCadastros = Integer.parseInt(sc.nextLine());
+        do{
+            mostrarMenu();
+            System.out.print("Escolha uma opção: ");
+            opcao = Integer.parseInt(sc.nextLine());
+            switch(opcao){
+                case 1:
+                    cadastrarPeca(estoque, sc);
+                    break;
+                case 2:
+                    buscarPeca(estoque, sc);
+                    break;
+                case 3:
+                    registrarEntrada(estoque, sc);
+                    break;
+                case 4:
+                    registrarBaixa(estoque, sc);
+                    break;
+                case 5:
+                    listarEstoque(estoque);
+                    break;
+                default:
+                    System.out.println("Opção Inválida");
+            }
 
-        //Fazer Cadastro
-        cadastrarPeca(estoque, sc, qtdCadastros);
-
-        // Buscar Peça
-        buscarPeca(estoque, sc);
-
-        // Dar entrada na Peça
-        registrarEntrada(estoque, sc);
-
-        // Dar baixa na Peça
-        registrarBaixa(estoque,sc);
-
-        // Mostrar Estoque
-        listarEstoque(estoque);
-        }
+        } while (opcao != 0);
+    }
 
     // Métodos
-    public static void cadastrarPeca(List<Peca> estoque, Scanner sc, int qtdCadastros){
+    public static void cadastrarPeca(List<Peca> estoque, Scanner sc){
+        System.out.print("Digite a quantidade de peças a serem cadastradas: ");
+        int qtdCadastros = Integer.parseInt(sc.nextLine());
         for(int i = 0; i<qtdCadastros; i++){
             System.out.print("Nome: ");
             String pecaNome = sc.nextLine();
@@ -107,6 +118,14 @@ public class Main {
         }else{
             System.out.println("Remoção realizada com sucesso.");
         }
+    }
+    public static void mostrarMenu(){
+        System.out.println("1 - Cadastrar peça");
+        System.out.println("2 - Buscar peça");
+        System.out.println("3 - Dar entrada");
+        System.out.println("4 - Dar baixa");
+        System.out.println("5 - Mostrar estoque");
+        System.out.println("0 - Sair");
     }
 
 }
