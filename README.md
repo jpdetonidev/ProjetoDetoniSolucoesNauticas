@@ -33,7 +33,7 @@ Este sistema resolve isso permitindo consultar rapidamente se uma peça existe n
 
 ## Próximos passos
 
-- [ ] Menu interativo para escolher as operações
+- [x] Menu interativo para escolher as operações
 - [ ] Preço por peça e cálculo do valor total do estoque
 - [ ] Persistência dos dados (banco de dados)
 - [ ] Interface gráfica
